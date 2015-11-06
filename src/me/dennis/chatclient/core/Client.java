@@ -11,6 +11,8 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
 
+import org.omg.CORBA.portable.UnknownException;
+
 public class Client implements Runnable {
 
 	Socket connection;
@@ -37,6 +39,9 @@ public class Client implements Runnable {
 			while (true) {
 				Logger.info(input.readUTF());
 			}
+		}
+		catch (UnknownException ex) {
+			Logger.err("Unknown host!");
 		}
 		catch (ConnectException ex) {
 			Logger.err("Could not connect to server!");
